@@ -14,7 +14,6 @@ function searchEbay(keyword){
   var pagination = '&paginationInput.entriesPerPage=20';
 
   var url = slug+appName+opName+serviceVer+rest+keywords+pagination;
-  console.log(url);
   $.ajax({
     url: url,
     method: "GET",
@@ -27,10 +26,14 @@ function searchEbay(keyword){
       var product = $(this);
       var title = product[0].title;
       var buyItNow = product[0].listingInfo[0].buyItNowAvailable;
-      console.log(buyItNow);
       if(buyItNow == "true" ) {
+        var buyItNowPrice = product[0].listingInfo[0].buyItNowPrice[0].__value__;
         $('#ebay').append('<p>'+title+'</p>');
+        $('#ebay p').append('<span>'+buyItNowPrice+'</span>');
+        console.log("product: ");
         console.log(product);
+        console.log("buyItNow: ");
+        console.log(buyItNowPrice);
 
       }
     });
