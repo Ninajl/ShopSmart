@@ -11,7 +11,7 @@ function searchEbay(keyword){
   //var callback = '&callback=_cb_findItemsByKeywords';
   var rest = '&REST-PAYLOAD';
   var keywords = '&keywords='+encodeURIComponent(keyword);
-  var pagination = '&paginationInput.entriesPerPage=10';
+  var pagination = '&paginationInput.entriesPerPage=20';
 
   var url = slug+appName+opName+serviceVer+rest+keywords+pagination;
   console.log(url);
@@ -22,12 +22,17 @@ function searchEbay(keyword){
   }).done(function(data){
     $('#ebay-loading').hide();
     var products = data.findItemsByKeywordsResponse[0].searchResult[0].item;
+
     $(products).each(function(){
       var product = $(this);
-      console.log(product);
       var title = product[0].title;
-      $('#ebay').append('<p>'+title+'</p>');
+      var buyItNow = product[0].listingInfo[0].buyItNowAvailable;
+      console.log(buyItNow);
+      if(buyItNow == "true" ) {
+        $('#ebay').append('<p>'+title+'</p>');
+        console.log(product);
 
+      }
     });
     //console.log(data.findItemsByKeywordsResponse[0].searchResult[0].item);
   }).error(function(xhr, ajaxOptions, thrownError){
