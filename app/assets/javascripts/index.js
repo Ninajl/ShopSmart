@@ -1,6 +1,12 @@
-// hide/toggle search engine
 $(document).ready(function(){
+  $('#results_search').hide();
+  $('#results').hide();
 
-  console.log('hello');
+  $('#home_search').on('click', function(e){
+    e.preventDefault();
+    $('#home').hide();
+    $('#results_search').show();
+    $('#results').show();
+  });
 
 });
