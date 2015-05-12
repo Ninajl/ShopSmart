@@ -6,8 +6,8 @@ class GoogleFetcher
     @request = Semantics3::Products.new(ENV['GOOGLE_API_KEY'], ENV['GOOGLE_API_SECRET'])
   end
 
-  def google_search
-    @request.products_field('search', 'lobster')
+  def google_search(product)
+    @request.products_field('search', product)
     @productsHash = @request.get_products()
   end
 

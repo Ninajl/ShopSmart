@@ -1,5 +1,10 @@
 $(function(){
-  searchEbay("Jon Duckett");
+  $('#home_search').on('click', function(){
+    var searchParam = $('#main_search').val();
+    searchEbay(searchParam);
+  });
+
+
 });
 
 function searchEbay(keyword){
