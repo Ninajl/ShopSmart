@@ -24,6 +24,8 @@ body {
 #amazon, #ebay, #google {
   border: solid black;
   width: auto;
+  overflow-y: scroll;
+  height: 500px;
 }
 
 
@@ -34,4 +36,8 @@ body {
 h3 {
   border-bottom:solid 2px black;
   padding-bottom: 3px;
+}
+
+button {
+  margin-left: 8px;
 }
