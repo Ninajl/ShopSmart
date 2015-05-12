@@ -1,7 +1,7 @@
 
 <div class="page-header">
-<h1>ShopSmart</h1>
 
+<h1>ShopSmart</h1>
 <h4><em>Your online shopping buddy</em></h4>
 
   <div id='results_search'>
@@ -36,28 +36,22 @@
 
     <div class="col-md-4" id='google'>
       <h3 class='text-center' >Google</h3>
-      <div class="col-md-5">
-        <!-- future picture -->
-      </div>
-      <div class="col-md-7">
-        <dd>Product Name</dd>
-        <dd>Product Price</dd>
-      </div>
-      <p>Product Description</p>
-      <hr>
+      <% @google_products.each do |product| %>
+        <img src='<%= product['images'][0] %>'/>
+        <span><%= product['name'] %></span>
+        <span>$<%= product['price'] %></span>
+        <hr>
+      <% end %>
     </div>
 
     <div class='col-md-4' id='amazon'>
       <h3 class='text-center'>Amazon</h3>
-      <div class="col-md-5">
-        <!-- future picture -->
-      </div>
-      <div class="col-md-7">
-        <dd>Product Name</dd>
-        <dd>Product Price</dd>
-      </div>
-      <p>Product Description</p>
-      <hr>
+      <% @products.each do |product| %>
+        <img src='<%= product["SmallImage"]["URL"] %>'/>
+        <span><%= product['ItemAttributes']['Title'] %></span>
+        <span><%= product['OfferSummary']['LowestNewPrice']['FormattedPrice'] %></span>
+        <hr>
+      <% end %>
     </div>
 
     <div class='col-md-4' id='ebay'>
