@@ -11,7 +11,7 @@ function searchEbay(keyword){
   //var callback = '&callback=_cb_findItemsByKeywords';
   var rest = '&REST-PAYLOAD';
   var keywords = '&keywords='+encodeURIComponent(keyword);
-  var pagination = '&paginationInput.entriesPerPage=20';
+  var pagination = '&paginationInput.entriesPerPage=40';
 
   var url = slug+appName+opName+serviceVer+rest+keywords+pagination;
   $.ajax({
@@ -28,8 +28,10 @@ function searchEbay(keyword){
       var buyItNow = product[0].listingInfo[0].buyItNowAvailable;
       if(buyItNow == "true" ) {
         var buyItNowPrice = product[0].listingInfo[0].buyItNowPrice[0].__value__;
+        var productImage = product[0].galleryURL[0];
         $('#ebay').append('<p>'+title+'</p>');
         $('#ebay p').append('<span>'+buyItNowPrice+'</span>');
+        $('#ebay p').prepend('<img src="' + productImage + '">' );
         console.log("product: ");
         console.log(product);
         console.log("buyItNow: ");
