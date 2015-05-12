@@ -27,15 +27,17 @@ function searchEbay(keyword){
       var title = product[0].title;
       var buyItNow = product[0].listingInfo[0].buyItNowAvailable;
       if(buyItNow == "true" ) {
+        var emptyString = "";
+        emptyString = product[0].itemId;
         var buyItNowPrice = product[0].listingInfo[0].buyItNowPrice[0].__value__;
         var productImage = product[0].galleryURL[0];
-        $('#ebay').append('<p>'+title+'</p>');
-        $('#ebay p').append('<span>'+buyItNowPrice+'</span>');
-        $('#ebay p').prepend('<img src="' + productImage + '">' );
+        $('#ebay').append('<p id="'+ emptyString +'">'+title+' </p>');
+        $('#ebay p#' + emptyString).append('<span>'+ '$' + buyItNowPrice+'</span>');
+        $('#ebay p#' + emptyString).prepend('<img src="' + productImage + '">' );
         console.log("product: ");
         console.log(product);
-        console.log("buyItNow: ");
-        console.log(buyItNowPrice);
+        // console.log("buyItNow: ");
+        // console.log(buyItNowPrice);
 
       }
     });
