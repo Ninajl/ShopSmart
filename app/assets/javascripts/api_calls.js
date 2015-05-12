@@ -1,5 +1,5 @@
 $(function(){
-  searchEbay("boots");
+  searchEbay("olivia + joy handbags");
 });
 
 function searchEbay(keyword){
@@ -33,7 +33,7 @@ function searchEbay(keyword){
         var productImage = product[0].galleryURL[0];
         var productUrl = product[0].viewItemURL[0];
         $('#ebay').append('<p id="'+ emptyString +'">' + '<a href='+ productUrl + '>' + title + '</a>' +  ' </p>');
-        $('#ebay p#' + emptyString).append('<span>'+ '$' + buyItNowPrice+'</span>');
+        $('#ebay p#' + emptyString).append('<span>'+ '$' + parseFloat(buyItNowPrice).toFixed(2) +'</span>');
         $('#ebay p#' + emptyString).prepend('<img src="' + productImage + '">' );
         console.log("product: ");
         console.log(product);
