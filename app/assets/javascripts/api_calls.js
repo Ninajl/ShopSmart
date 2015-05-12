@@ -31,7 +31,8 @@ function searchEbay(keyword){
         emptyString = product[0].itemId;
         var buyItNowPrice = product[0].listingInfo[0].buyItNowPrice[0].__value__;
         var productImage = product[0].galleryURL[0];
-        $('#ebay').append('<p id="'+ emptyString +'">'+title+' </p>');
+        var productUrl = product[0].viewItemURL[0];
+        $('#ebay').append('<p id="'+ emptyString +'">' + '<a href='+ productUrl + '>' + title + '</a>' +  ' </p>');
         $('#ebay p#' + emptyString).append('<span>'+ '$' + buyItNowPrice+'</span>');
         $('#ebay p#' + emptyString).prepend('<img src="' + productImage + '">' );
         console.log("product: ");
