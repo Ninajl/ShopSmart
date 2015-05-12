@@ -49,15 +49,15 @@
 
     <div class='col-md-4' id='amazon'>
       <h3 class='text-center'>Amazon</h3>
-      <div class="col-md-5">
-        <!-- future picture -->
-      </div>
+      <% @products.each do |product| %>
       <div class="col-md-7">
-        <dd>Product Name</dd>
-        <dd>Product Price</dd>
+        <img src='<%= product["SmallImage"]["URL"] %>'/>
+        <span><%= product['ItemAttributes']['Title'] %></span>
+        <span><%= product['OfferSummary']['LowestNewPrice']['FormattedPrice'] %></span>
+        <hr>
       </div>
-      <p>Product Description</p>
-      <hr>
+
+      <% end %>
     </div>
 
     <div class='col-md-4' id='ebay'>
