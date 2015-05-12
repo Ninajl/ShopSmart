@@ -1,5 +1,5 @@
 $(function(){
-  searchEbay("olivia + joy handbags");
+  searchEbay("Jon Duckett");
 });
 
 function searchEbay(keyword){
@@ -11,7 +11,7 @@ function searchEbay(keyword){
   //var callback = '&callback=_cb_findItemsByKeywords';
   var rest = '&REST-PAYLOAD';
   var keywords = '&keywords='+encodeURIComponent(keyword);
-  var pagination = '&paginationInput.entriesPerPage=40';
+  var pagination = '&paginationInput.entriesPerPage=10000';
 
   var url = slug+appName+opName+serviceVer+rest+keywords+pagination;
   $.ajax({
