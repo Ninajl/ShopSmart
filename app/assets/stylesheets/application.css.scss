@@ -24,7 +24,7 @@ body {
 #amazon, #ebay, #google {
   border: solid black;
   overflow-y: scroll;
-  height: 500px;
+  height: 600px;
 }
 
 
@@ -39,4 +39,9 @@ h3 {
 
 button {
   margin-left: 8px;
+}
+
+img {
+  height: 100px;
+  width: 100px;
 }

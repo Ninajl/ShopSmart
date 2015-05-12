@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
    get 'amazon' => 'amazon_fetcher#index'
 
+   get 'google' => 'google_fetcher#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
