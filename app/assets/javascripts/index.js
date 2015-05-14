@@ -5,6 +5,10 @@ $(document).ready(function(){
   $('#home_search').on('click', function(e){
     $('.loading-gif').show();
     $('#myModal').show();
+    $('#amazon').empty();
+    $('#google').empty();
+    $('#ebay').empty();
+
       e.preventDefault();
   });
 

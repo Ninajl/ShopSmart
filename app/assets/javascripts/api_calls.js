@@ -1,7 +1,9 @@
 
 $(function(){
-  $('#home_search').click(function(e){
+  $('#home_search').on('click', function(e){
     e.preventDefault();
+
+    
     var search_params = $('#search_field').val();
     console.log(search_params);
 
@@ -44,7 +46,8 @@ $(function(){
         $('#amazon').append('<p id="'+ amazon_id +'">' + '<a href='+ amazon_url + '>' + amazon_title + '</a>' +  ' </p>');
         $('#amazon p#' + amazon_id).append('<p class="price">' + amazon_price +'</p>');
         $('#amazon p#' + amazon_id).append('<img src="' + amazon_image + '">' );
-        $('#amazon p:not(:nth-child(2))').hide();
+        // $('#amazon p#' + amazon_id).append('<hr>' );
+        //$('#amazon p:not(:nth-child(2))').hide();
 
       });
 
@@ -62,7 +65,7 @@ $(function(){
         $('#google').append('<p id="'+ google_id +'">' + '<a href='+ google_url + '>' + google_title + '</a>' +  ' </p>');
         $('#google p#' + google_id).append('<p class="price">' + '$' + google_price +'</p>');
         $('#google p#' + google_id).append('<img src="' + google_image + '">' );
-        $('#google p:not(:nth-child(2))').hide();
+        //$('#google p:not(:nth-child(2))').hide();
       });
 
       // EBAY API APPEND
@@ -104,8 +107,19 @@ $(function(){
            $('#ebay').append('<p id="'+ id +'">' + '<a href='+ URL + '>' + ebay_title + '</a>' +  ' </p>');
            $('#ebay p#' + id).append('<p class="price">'+ '$' + parseFloat(ebay_buyItNow).toFixed(2) +'</p>');
            $('#ebay p#' + id).append('<img src="' + ebayImage + '">' );
-           $('#ebay p:not(:nth-child(2))').hide();
+          // $('#ebay p:not(:nth-child(2))').hide();
       });
     });
+    $('#ebay').on('scroll', function(){
+       console.log('hey ebay!');
+     });
   });
-});
+
+
+
+
+  });
+
+  function moveItemUp(source) {
+   $(source + 'p:nth-child(2)').next().slideUp('slow');
+  }
