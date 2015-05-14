@@ -3,7 +3,7 @@ $(function(){
   $('#home_search').on('click', function(e){
     e.preventDefault();
 
-    
+
     var search_params = $('#search_field').val();
     console.log(search_params);
 
@@ -43,18 +43,14 @@ $(function(){
         var amazon_price = amazon_product.OfferSummary.LowestNewPrice.FormattedPrice;
         var amazon_image = amazon_product.LargeImage.URL;
 
-        $('#amazon').append('<p id="'+ amazon_id +'">' + '<a href='+ amazon_url + '>' + amazon_title + '</a>' +  ' </p>');
-        $('#amazon p#' + amazon_id).append('<p class="price">' + amazon_price +'</p>');
+        $('#amazon').append('<p id="'+ amazon_id +'"><span class="price">' + amazon_price +  ' </span></p>');
+        $('#amazon p#' + amazon_id).append('<p><a href='+ amazon_url + '>' + amazon_title + '</a></p>');
         $('#amazon p#' + amazon_id).append('<img src="' + amazon_image + '">' );
-        // $('#amazon p#' + amazon_id).append('<hr>' );
-        //$('#amazon p:not(:nth-child(2))').hide();
-
       });
 
       // GOOGLE API APPEND
       var google_products = google[0];
       $(google_products).each(function(){
-
         var google_product = $(this)[0];
         var google_title = google_product.name;
         var google_price = google_product.price;
@@ -62,10 +58,9 @@ $(function(){
         google_id = google_product.sem3_id;
         var google_image = google_product.images;
         var google_url = google_product.sitedetails[0].url;
-        $('#google').append('<p id="'+ google_id +'">' + '<a href='+ google_url + '>' + google_title + '</a>' +  ' </p>');
-        $('#google p#' + google_id).append('<p class="price">' + '$' + google_price +'</p>');
+        $('#google').append('<p id="'+ google_id +'"><span class="price">$' + google_price+  ' </span></p>');
+        $('#google p#' + google_id).append('<p><a href='+ google_url + '>' + google_title + '</a></p>');
         $('#google p#' + google_id).append('<img src="' + google_image + '">' );
-        //$('#google p:not(:nth-child(2))').hide();
       });
 
       // EBAY API APPEND
@@ -104,22 +99,25 @@ $(function(){
         var ebayImage = ebay_product[3];
         var URL = ebay_product[4];
           ebay_products.push(ebay_product);
-           $('#ebay').append('<p id="'+ id +'">' + '<a href='+ URL + '>' + ebay_title + '</a>' +  ' </p>');
-           $('#ebay p#' + id).append('<p class="price">'+ '$' + parseFloat(ebay_buyItNow).toFixed(2) +'</p>');
+           $('#ebay').append('<p id="'+ id +'"><span class="price">$' + parseFloat(ebay_buyItNow).toFixed(2) + ' </span></p>');
+           $('#ebay p#' + id).append('<p><a href='+ URL + '>' + ebay_title + '</a></p>');
            $('#ebay p#' + id).append('<img src="' + ebayImage + '">' );
-          // $('#ebay p:not(:nth-child(2))').hide();
       });
+
+    var amazon_price = $('#amazon .price')[0].innerHTML;
+    var google_price = $('#google .price')[0].innerHTML;
+    var ebay_price = $('#ebay .price')[0].innerHTML;
+
+    if((amazon_price < google_price) && (amazon_price < ebay_price)){
+      $('#amazon .price').first().css("color", "green");
+    }
+    if((google_price < amazon_price) && (google_price < ebay_price)){
+      $('#google .price').first().css("color", "green");
+    }
+    if((ebay_price < google_price) && (ebay_price < amazon_price)){
+      $('#ebay .price').first().css("color", "green");
+    }
+
     });
-    $('#ebay').on('scroll', function(){
-       console.log('hey ebay!');
-     });
+   });
   });
-
-
-
-
-  });
-
-  function moveItemUp(source) {
-   $(source + 'p:nth-child(2)').next().slideUp('slow');
-  }
