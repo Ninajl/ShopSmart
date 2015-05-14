@@ -39,7 +39,7 @@ $(function(){
         amazon_id = amazon_product.ASIN;
         var amazon_url = amazon_product.DetailPageURL;
         var amazon_price = amazon_product.OfferSummary.LowestNewPrice.FormattedPrice;
-        var amazon_image = amazon_product.SmallImage.URL;
+        var amazon_image = amazon_product.LargeImage.URL;
 
         $('#amazon').append('<p id="'+ amazon_id +'">' + '<a href='+ amazon_url + '>' + amazon_title + '</a>' +  ' </p>');
         $('#amazon p#' + amazon_id).append('<p class="price">' + amazon_price +'</p>');
