@@ -10,10 +10,10 @@ class AmazonFetcher
     )
   end
 
-  def amazon_search(product)
+  def amazon_search(search_word)
     @response = @request.item_search(
     query: {
-      'Keywords' => product,
+      'Keywords' => search_word,
       'SearchIndex' => 'All',
       'MerchantID' => 'Amazon',
       'ResponseGroup' => 'Offers, ItemAttributes, Images',

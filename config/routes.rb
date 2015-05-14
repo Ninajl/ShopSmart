@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'welcome#index'
 
+   get 'welcome/amazon/:id' => 'welcome#amazon_query'
+   get 'welcome/google/:id' => 'welcome#google_query'
+
    get 'amazon' => 'amazon_fetcher#index'
 
    get 'google' => 'google_fetcher#index'
