@@ -7,7 +7,7 @@ $(function(){
     var search_params = $('#search_field').val();
     console.log(search_params);
 
-    var slug = 'http://svcs.ebay.com/services/search/FindingService/v1';
+    var slug = 'https://svcs.ebay.com/services/search/FindingService/v1';
     var appName = '?SECURITY-APPNAME=gSchoold0-5756-496d-acbc-afe9beb3e7e';
     var opName = '&OPERATION-NAME=findItemsByKeywords';
     var serviceVer = '&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON';
