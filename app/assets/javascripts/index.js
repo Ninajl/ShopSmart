@@ -1,11 +1,9 @@
 $(document).ready(function(){
-  $('#results_search').hide();
   $('#results').hide();
+  $('nav').hide();
 
   $('#home_search').on('click', function(e){
-    $('#home').hide();
-    $('#results_search').show();
-    $('#results').show();
+    $('.loading-gif').show();
   });
 
 });
