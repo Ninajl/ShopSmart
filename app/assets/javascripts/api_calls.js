@@ -3,6 +3,7 @@ $(function(){
   $('#home_search').click(function(e){
     e.preventDefault();
     var search_params = $('#search_field').val();
+    console.log(search_params);
 
     var slug = 'http://svcs.ebay.com/services/search/FindingService/v1';
     var appName = '?SECURITY-APPNAME=gSchoold0-5756-496d-acbc-afe9beb3e7e';
@@ -23,7 +24,8 @@ $(function(){
           dataType: 'jsonp'
         })
     ).done(function(amazon, google, ebay){
-      $('.loading-gif').hide();
+      $('#myModal').hide();
+      $('.modal-backdrop').css("display", "none");
       $('.jumbotron').slideUp(1000);
       $('.brand-container').fadeIn("slow");
       $('#results').fadeIn("slow");
