@@ -42,8 +42,10 @@ $(function(){
         var amazon_image = amazon_product.SmallImage.URL;
 
         $('#amazon').append('<p id="'+ amazon_id +'">' + '<a href='+ amazon_url + '>' + amazon_title + '</a>' +  ' </p>');
-        $('#amazon p#' + amazon_id).append('<span>' + amazon_price +'</span>');
-        $('#amazon p#' + amazon_id).prepend('<img src="' + amazon_image + '">' );
+        $('#amazon p#' + amazon_id).append('<p class="price">' + amazon_price +'</p>');
+        $('#amazon p#' + amazon_id).append('<img src="' + amazon_image + '">' );
+        $('#amazon p:not(:nth-child(2))').hide();
+
       });
 
       // GOOGLE API APPEND
@@ -58,8 +60,10 @@ $(function(){
         var google_image = google_product.images;
         var google_url = google_product.sitedetails[0].url;
         $('#google').append('<p id="'+ google_id +'">' + '<a href='+ google_url + '>' + google_title + '</a>' +  ' </p>');
-        $('#google p#' + google_id).append('<span>' + '$' + google_price +'</span>');
-        $('#google p#' + google_id).prepend('<img src="' + google_image + '">' );
+        $('#google p#' + google_id).append('<p class="price">' + '$' + google_price +'</p>');
+        $('#google p#' + google_id).append('<img src="' + google_image + '">' );
+        $('#google p:not(:nth-child(2))').hide();
+        // p:nth-child(2)
       });
 
       // EBAY API APPEND
@@ -83,8 +87,10 @@ $(function(){
             ebay_id = ebay_product[0].itemId;
             ebayProductsObj[ebay_id] = [buyItNowPrice, ebay_title, ebay_image, ebay_url];
            //  $('#ebay').append('<p id="'+ ebay_id +'">' + '<a href='+ ebay_url + '>' + ebay_title + '</a>' +  ' </p>');
-           //  $('#ebay p#' + ebay_id).append('<span>'+ '$' + parseFloat(buyItNowPrice).toFixed(2) +'</span>');
-           //  $('#ebay p#' + ebay_id).prepend('<img src="' + ebay_image + '">' );
+           //  $('#ebay p#' + ebay_id).append('<p class="price">'+ '$' + parseFloat(buyItNowPrice).toFixed(2) +'</p>');
+           //  $('#ebay p#' + ebay_id).append('<img src="' + ebay_image + '">' );
+           $('#ebay p:not(:nth-child(2))').hide();
+
          }
          console.log(ebayProductsObj);
        });
