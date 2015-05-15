@@ -21,18 +21,18 @@ $(function(){
       $.getJSON('/welcome/amazon/'+ search_params),
       $.getJSON('/welcome/google/'+ search_params),
       $.ajax({
-          url: url,
-          method: "GET",
-          dataType: 'jsonp'
-        })
+        url: url,
+        method: "GET",
+        dataType: 'jsonp'
+      })
     ).done(function(amazon, google, ebay){
       $('#myModal').hide();
       $('.modal-backdrop').css("display", "none");
       $('.jumbotron').slideUp(1000);
       $('.brand-container').fadeIn("slow");
       $('#results').fadeIn("slow");
-      // AMAZON API APPEND
 
+      // AMAZON API APPEND
       var amazon_products = amazon[0];
       $(amazon_products).each(function(){
         var amazon_product = $(this)[0];
@@ -58,37 +58,38 @@ $(function(){
         google_id = google_product.sem3_id;
         var google_image = google_product.images;
         var google_url = google_product.sitedetails[0].url;
+
         $('#google').append('<p id="'+ google_id +'"><span class="price">$' + google_price+  ' </span></p>');
         $('#google p#' + google_id).append('<p><a href='+ google_url + '>' + google_title + '</a></p>');
         $('#google p#' + google_id).append('<img src="' + google_image + '">' );
       });
 
       // EBAY API APPEND
-    var ebay_products = ebay[0].findItemsByKeywordsResponse[0].searchResult[0].item;
+      var ebay_products = ebay[0].findItemsByKeywordsResponse[0].searchResult[0].item;
 
-    var ebayProductsObj = {};
-       $(ebay_products).each(function(){
-         var ebay_product = $(this);
-         var ebay_buyItNow = ebay_product[0].listingInfo[0].buyItNowAvailable;
+      var ebayProductsObj = {};
+      $(ebay_products).each(function(){
+        var ebay_product = $(this);
+        var ebay_buyItNow = ebay_product[0].listingInfo[0].buyItNowAvailable;
 
-         if(ebay_buyItNow == "true" ) {
-           var ebay_id = "";
-           var ebay_title = ebay_product[0].title[0];
-           var buyItNowPrice = ebay_product[0].listingInfo[0].buyItNowPrice[0].__value__;
-           var ebay_image = ebay_product[0].galleryURL[0];
-           var ebay_url = ebay_product[0].viewItemURL[0];
-           ebay_id = ebay_product[0].itemId;
-           ebayProductsObj[ebay_id] = [buyItNowPrice, ebay_title, ebay_image, ebay_url];
+        if(ebay_buyItNow == "true" ) {
+          var ebay_id = "";
+          var ebay_title = ebay_product[0].title[0];
+          var buyItNowPrice = ebay_product[0].listingInfo[0].buyItNowPrice[0].__value__;
+          var ebay_image = ebay_product[0].galleryURL[0];
+          var ebay_url = ebay_product[0].viewItemURL[0];
+          ebay_id = ebay_product[0].itemId;
+          ebayProductsObj[ebay_id] = [buyItNowPrice, ebay_title, ebay_image, ebay_url];
         }
       });
 
       var sortable = [];
 
       for (var product in ebayProductsObj)
-         sortable.push([product, ebayProductsObj[product][0], ebayProductsObj[product][1], ebayProductsObj[product][2], ebayProductsObj[product][3]]);
-         sortable.sort(function(a, b) {
-         return a[1] - b[1]
-       });
+      sortable.push([product, ebayProductsObj[product][0], ebayProductsObj[product][1], ebayProductsObj[product][2], ebayProductsObj[product][3]]);
+      sortable.sort(function(a, b) {
+        return a[1] - b[1]
+      });
 
       $(sortable).each(function(){
 
@@ -98,26 +99,31 @@ $(function(){
         var id = ebay_product[0];
         var ebayImage = ebay_product[3];
         var URL = ebay_product[4];
-          ebay_products.push(ebay_product);
-           $('#ebay').append('<p id="'+ id +'"><span class="price">$' + parseFloat(ebay_buyItNow).toFixed(2) + ' </span></p>');
-           $('#ebay p#' + id).append('<p><a href='+ URL + '>' + ebay_title + '</a></p>');
-           $('#ebay p#' + id).append('<img src="' + ebayImage + '">' );
+        ebay_products.push(ebay_product);
+        $('#ebay').append('<p id="'+ id +'"><span class="price">$' + parseFloat(ebay_buyItNow).toFixed(2) + ' </span></p>');
+        $('#ebay p#' + id).append('<p><a href='+ URL + '>' + ebay_title + '</a></p>');
+        $('#ebay p#' + id).append('<img src="' + ebayImage + '">' );
       });
 
-    var amazon_price = $('#amazon .price')[0].innerHTML;
-    var google_price = $('#google .price')[0].innerHTML;
-    var ebay_price = $('#ebay .price')[0].innerHTML;
+      var amazon_price = $('#amazon .price')[0].innerHTML;
+      var google_price = $('#google .price')[0].innerHTML;
+      var ebay_price = $('#ebay .price')[0].innerHTML;
 
-    if((amazon_price < google_price) && (amazon_price < ebay_price)){
-      $('#amazon .price').first().css("color", "green");
-    }
-    if((google_price < amazon_price) && (google_price < ebay_price)){
-      $('#google .price').first().css("color", "green");
-    }
-    if((ebay_price < google_price) && (ebay_price < amazon_price)){
-      $('#ebay .price').first().css("color", "green");
-    }
+      if((amazon_price < google_price) && (amazon_price < ebay_price)){
+        $('#amazon .price').first().css("color", "green");
+        $('#amazon p').first().css("box-shadow", '0px 4px #d3d3d3, 0px 10px 55px rgba(0,0,0,1.0)')
+
+      }
+      if((google_price < amazon_price) && (google_price < ebay_price)){
+        $('#google .price').first().css("color", "green");
+        $('#google p').first().css("box-shadow", '0px 4px #d3d3d3, 0px 10px 55px rgba(0,0,0,1.0)')
+
+      }
+      if((ebay_price < google_price) && (ebay_price < amazon_price)){
+        $('#ebay .price').first().css("color", "green");
+        $('#ebay p').first().css("box-shadow", '0px 4px #d3d3d3, 0px 10px 55px rgba(0,0,0,1.0)')
+      }
 
     });
-   });
   });
+});
