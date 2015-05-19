@@ -139,7 +139,7 @@ var getProducts = (function(){
   }
 
   function buildHTML(productHTMLID, product_id, product_url, product_image, product_title, product_price){
-    $(productHTMLID).append('<p id="'+ product_id +'"><span class="price">' + product_price +  ' </span></p>');
+    $(productHTMLID).append('<p class="product-container" id="'+ product_id +'"><span class="price">' + product_price +  ' </span></p>');
     $(productHTMLID + ' p#' + product_id).append('<p><a href='+ product_url + '>' + product_title + '</a></p>');
     $(productHTMLID + ' p#' + product_id).append('<img src="' + product_image + '">' );
   }
@@ -175,21 +175,18 @@ var getProducts = (function(){
     ebay_price = parseFloat(ebay_price);
 
     if((amazon_price < google_price) && (amazon_price < ebay_price)){
-      console.log("amazon true");
       $('#amazon .price').first().css("color", "green");
       $('#amazon p').first().css({"box-shadow": '0px 4px #d3d3d3, 0px 10px 55px rgba(0,0,0,1.0)', "border-radius": "64px",
       "border": "2px solid greenyellow"});
       $('#amazon img').first().css("border-bottom", "none");
     }
     if((google_price < amazon_price) && (google_price < ebay_price)){
-      console.log("google true");
       $('#google .price').first().css("color", "green");
       $('#google p').first().css({"box-shadow": '0px 4px #d3d3d3, 0px 10px 55px rgba(0,0,0,1.0)', "border-radius": "64px",
       "border": "2px solid greenyellow"});
       $('#google img').first().css("border-bottom", "none");
     }
     if((ebay_price < google_price) && (ebay_price < amazon_price)){
-      console.log("ebay true");
       $('#ebay .price').first().css("color", "green");
       $('#ebay p').first().css({"box-shadow": '0px 4px #d3d3d3, 0px 10px 55px rgba(0,0,0,1.0)', "border-radius": "64px",
       "border": "2px solid greenyellow"});

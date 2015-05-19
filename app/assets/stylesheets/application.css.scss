@@ -2,16 +2,12 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700|Pacifico|Comfortaa:400,300);
 
-//font-family: 'Comfortaa', cursive;
-//font-family: 'Pacifico', cursive;
-//font-family: 'Quicksand', sans-serif;
 
 body {
-  // padding-top: 25px;
   font-family: 'Quicksand', sans-serif;
   background: radial-gradient(circle, #fff 20%, #ccc);
-    background-color: white;
-  }
+  background-color: white;
+}
 
 .brand{
   font-family: 'Pacifico', cursive;
@@ -65,8 +61,6 @@ body {
   border-bottom: none;
 }
 
-
-
 .search-terms{
   font-family: 'Quicksand', sans-serif;
   font-size: 24px;
@@ -97,6 +91,13 @@ body {
   border-radius: 20px;
 }
 
+#amazon p, #ebay p, #google p{
+  margin: 23px 0 10px;
+}
+.product-container{
+  border-bottom: thin solid #d3d3d3;
+}
+
 
 #ebay-loading{
   display: none;
@@ -114,7 +115,6 @@ button {
 img {
   height: 300px;
   width: 300px;
-  border-bottom: thin solid black;
   padding-bottom: 10px;
 }
 
