@@ -145,6 +145,7 @@ var getProducts = (function(){
   }
 
   function transitionHide(search_params){
+    $('body').removeClass('modal-open');
     $('.logo').show();
     $('#myModal').hide();
     $('.modal-backdrop').css("display", "none");
